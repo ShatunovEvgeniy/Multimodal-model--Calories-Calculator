@@ -5,7 +5,7 @@ torch
 transformers
 torchinfo
 numpy
-Pillow
+Pillow~=10.2.0
 albumentations
 timm
 opencv-python-headless
