@@ -177,5 +177,6 @@ if __name__ == '__main__':
         DISH_CSV_PATH = DATASET_DIR / "dish.csv"
         INGREDIENTS_CSV_PATH = DATASET_DIR / "ingredients.csv"
         WEIGHTS_DIR = BASE_DIR / "models" / "calories_normalized_no_log"
+
     config = Config()
     train(config, device)

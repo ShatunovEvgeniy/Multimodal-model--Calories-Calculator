@@ -106,7 +106,7 @@ def get_worst_predictions(model, config, device, top_k=5, display_images=True):
         }
         target = batch['target'].to(device, non_blocking=True)
 
-        prediction = model(**inputs)
+        prediction = model.infer(**inputs)
         abs_error = torch.abs(prediction - target)  # [B]
         rel_error = abs_error / (target + 1e-6) * 100  # MAPE в процентах
 
@@ -138,9 +138,9 @@ def get_worst_predictions(model, config, device, top_k=5, display_images=True):
             image_tensor = batch['image'][i].cpu().clone()
 
             dish_info = {
-                'mass_g': batch['mass'][i].item(),
+                'mass_g': batch['mass'][i].item() * config.MASS_STD + config.MASS_MEAN,
                 'ingredients': ingredients_str,
-                'calories_true': target[i].item(),
+                'calories_true': target[i].item() * config.CAL_STD + config.CAL_MEAN,
                 'calories_pred': prediction[i].item(),
                 'abs_error': abs_error[i].item(),
                 'rel_error_pct': rel_error[i].item(),
