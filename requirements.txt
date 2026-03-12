@@ -1,0 +1,11 @@
+pandas
+matplotlib
+scikit-learn
+torch
+transformers
+torchinfo
+numpy
+Pillow
+albumentations
+timm
+opencv-python-headless
